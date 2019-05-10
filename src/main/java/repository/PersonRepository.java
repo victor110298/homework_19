@@ -16,4 +16,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             "AND extract(DAY FROM birthday) = :d",
             nativeQuery = true)
     List<Person> findByMatchMonthAndMatchDay(@Param("m") int month, @Param("d") int day);
+
+    @Query(value = "SELECT * FROM users WHERE email = :e", nativeQuery = true)
+    Person findOneByEmail(@Param("e") String email);
 }

@@ -13,29 +13,29 @@ import java.util.List;
  * and realise this methods
  */
 
-@Service("personService")
+@Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonServiceImpl implements PersonService {
 
     private PersonRepository repository;
 
     @Override
-    public void createUser(Person person) {
+    public void createPerson(Person person) {
         repository.save(person);
     }
 
     @Override
-    public void updateUser(Person person) {
+    public void updatePerson(Person person) {
         repository.save(person);
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void deletePerson(Long id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Person findUserById(Long id) {
+    public Person findPersonById(Long id) {
         if(repository.findById(id).isPresent()) {
             return repository.findById(id).get();
         }

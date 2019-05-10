@@ -25,13 +25,10 @@ import java.time.LocalDate;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column
-    private String firstName;
-
-    @Column
-    private String lastName;
+    private String name;
 
     @Column
     private Integer age;

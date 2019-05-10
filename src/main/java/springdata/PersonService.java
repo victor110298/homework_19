@@ -10,13 +10,13 @@ import java.util.List;
  */
 
 public interface PersonService {
-    void createUser(Person person);
+    void createPerson(Person person);
 
-    void updateUser(Person person);
+    void updatePerson(Person person);
 
-    void deleteUser(Long id);
+    void deletePerson(Long id);
 
-    Person findUserById(Long id);
+    Person findPersonById(Long id);
 
     List<Person> findAll();
 
