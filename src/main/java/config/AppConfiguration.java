@@ -21,6 +21,7 @@ import java.util.Properties;
 @ComponentScan("springdata")
 @PropertySource("classpath:application.properties")
 public class AppConfiguration {
+
     @Value("${url}")
     private String url;
     @Value("${user}")
@@ -37,12 +38,9 @@ public class AppConfiguration {
     private String showSQL;
 
     @Bean
-    public DriverManagerDataSource DataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource(url, user, password);
         dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
-        dataSource.setUsername(user);
-        dataSource.setPassword(password);
         return dataSource;
     }
 
@@ -58,7 +56,7 @@ public class AppConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factoryBean.setDataSource((DataSource()));
+        factoryBean.setDataSource((dataSource()));
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setPackagesToScan("com.example.springdata.entity");
         factoryBean.setJpaProperties(hibernateProps());

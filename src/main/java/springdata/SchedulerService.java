@@ -26,17 +26,16 @@ public class SchedulerService {
         int month = date.getMonthValue();
         int day = date.getDayOfMonth();
         List<Person> list = personService.findAllByBirthDay(month, day);
-        if (!list.isEmpty()) {
-            list.forEach(person -> {
-                try {
-                    String message = "Happy Birthday dear " + person.getName() + "!";
-                    emailService.send(person.getEmail(), "Happy Birthday!", message);
-                    log.info("Email have been sent. User id: {}, Date: {}", person.getId(), date);
-                } catch (Exception e) {
-                    log.error("Email can't be sent.User's id: {}, Error: {}", person.getId(), e.getMessage());
-                    log.error("Email can't be sent", e);
-                }
-            });
-        }
+        list.forEach(person -> {
+            try {
+                String message = "Happy Birthday dear " + person.getName() + "!";
+                emailService.send(person.getEmail(), "Happy Birthday!", message);
+                log.info("Email have been sent. User id: {}, Date: {}", person.getId(), date);
+            } catch (Exception e) {
+                log.error("Email can't be sent.User's id: {}, Error: {}", person.getId(), e.getMessage());
+                log.error("Email can't be sent", e);
+            }
+        });
     }
+
 }

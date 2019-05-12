@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import repository.PersonRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This class implements PersonService
@@ -36,10 +37,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person findPersonById(Long id) {
-        if(repository.findById(id).isPresent()) {
-            return repository.findById(id).get();
-        }
-        else throw new IllegalArgumentException("Illegal id");
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
     @Override

@@ -34,7 +34,9 @@ public class Person {
     private Integer age;
 
     @Email
+    @Column
     private String email;
 
+    @Column
     private LocalDate birthday;
 }
