@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonServiceImpl implements PersonService {
 
-    private PersonRepository repository;
+    private final PersonRepository repository;
 
     @Override
     public void createPerson(Person person) {

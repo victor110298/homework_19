@@ -19,7 +19,6 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppTestConfiguration.class)
-@NoArgsConstructor
 public class SpringDataApplicationTest {
 
     @Autowired
