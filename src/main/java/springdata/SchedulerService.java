@@ -15,12 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SchedulerService {
 
-    private static final String CRON = "*/10 * * * * *";
-
     private final PersonService personService;
     private final EmailService emailService;
 
-    @Scheduled(cron = CRON)
+    @Scheduled(cron = "${cron}")
     public void sendMailToUsers() {
         LocalDate date = LocalDate.now();
         int month = date.getMonthValue();
@@ -37,5 +35,4 @@ public class SchedulerService {
             }
         });
     }
-
 }

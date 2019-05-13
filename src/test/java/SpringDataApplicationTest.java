@@ -1,5 +1,5 @@
 
-import config.AppConfiguration;
+import config.AppTestConfiguration;
 import entity.Person;
 import lombok.NoArgsConstructor;
 import org.junit.After;
@@ -18,18 +18,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AppConfiguration.class)
+@ContextConfiguration(classes = AppTestConfiguration.class)
 @NoArgsConstructor
 public class SpringDataApplicationTest {
 
     @Autowired
     private PersonService service;
 
-    private Person person;
-
     @Before
     public void setUp() {
-        person = new Person()
+       Person person = new Person()
                 .setName("Petro")
                 .setAge(25)
                 .setEmail("petroit@mail.com")
@@ -38,8 +36,9 @@ public class SpringDataApplicationTest {
     }
 
     @After
-    public void drop() {
-        service.deletePerson(person.getId());
+    public void drop()
+    {
+        service.deletePerson(service.findOneByEmail("petroit@mail.com").getId());
     }
 
     @Test
@@ -66,6 +65,7 @@ public class SpringDataApplicationTest {
 
     @Test
     public void shouldUpdateUser() {
+        Person person = service.findOneByEmail("petro11@email.com");
         person.setName("TEST");
         service.updatePerson(person);
         Person updated = service.findPersonById(person.getId());
@@ -74,6 +74,7 @@ public class SpringDataApplicationTest {
 
     @Test
     public void shouldReturnUserById() {
+        Person person = service.findOneByEmail("petro11@email.com");
         Long id = person.getId();
         Person target = service.findPersonById(id);
         assertEquals(person, target);

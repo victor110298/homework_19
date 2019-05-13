@@ -24,6 +24,7 @@ import java.time.LocalDate;
 @Accessors(chain = true)
 public class Person {
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
