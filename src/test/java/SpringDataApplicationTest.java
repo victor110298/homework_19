@@ -1,7 +1,5 @@
 
-import config.AppTestConfiguration;
 import entity.Person;
-import lombok.NoArgsConstructor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
